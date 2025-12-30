@@ -1,23 +1,4 @@
-from fastapi import FastAPI
-from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse
-import uvicorn
-import os
-
-app = FastAPI()
-
-# Define o caminho absoluto para a pasta static baseada na localização do arquivo main.py
-static_path = os.path.join(os.path.dirname(__file__), "static")
-
-# Cria a pasta se ela não existir para evitar o erro de inicialização
-if not os.path.exists(static_path):
-    os.makedirs(static_path)
-
-# Garante que o arquivo index.html exista com o conteúdo básico
-index_file_path = os.path.join(static_path, "index.html")
-if not os.path.exists(index_file_path):
-    with open(index_file_path, "w") as f:
-        f.write("""<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -85,17 +66,4 @@ if not os.path.exists(index_file_path):
         document.getElementById('random-image').src = images[randomIdx];
     </script>
 </body>
-</html>""")
-
-app.mount("/static", StaticFiles(directory=static_path), name="static")
-
-@app.get("/")
-def read_index():
-    return FileResponse(os.path.join(static_path, 'index.html'))
-
-@app.get("/api/hello")
-def read_root():
-    return {"message": "Hello from hello-home! Versao 2.0"}
-
-if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+</html>
