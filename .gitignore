@@ -1,0 +1,25 @@
+# Ambientes virtuais
+.venv/
+.uv/
+
+# Cache do Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Arquivos de build
+build/
+dist/
+*.egg-info/
+
+# Configs de editor/IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# Arquivos temporários
+*.log
+*.tmp
+*.swp
+.DS_Store
